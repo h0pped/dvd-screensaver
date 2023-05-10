@@ -1,15 +1,18 @@
 import { useEffect, useRef, useState } from "react";
 import "./styles.css";
 
+type DirectionX = "left" | "right";
+type DirectionY = "top" | "bottom";
+
 const DVD: React.FC = () => {
   const fieldRef = useRef<HTMLDivElement>(null);
   const boxRef = useRef<HTMLDivElement>(null);
 
   const [fieldSize, setFieldSize] = useState({ width: 0, height: 0 });
-  const [boxPosition, setboxPosition] = useState({ x: 300, y: 300 });
+  const [boxPosition, setboxPosition] = useState({ x: 0, y: 0 });
 
-  const [directionX, setDirectionX] = useState<"top" | "bottom">("bottom");
-  const [directionY, setDirectionY] = useState<"left" | "right">("left");
+  const [directionY, setDirectionY] = useState<DirectionY>("bottom");
+  const [directionX, setDirectionX] = useState<DirectionX>("left");
 
   useEffect(() => {
     setFieldSize({
@@ -30,36 +33,35 @@ const DVD: React.FC = () => {
       const hasGotTop = boxPosition.y - 1 === 0;
       const hasGotBottom = boxPosition.y + 20 + 2 === fieldSize.height;
       if (hasGotRight) {
-        setDirectionY("left");
+        setDirectionX("left");
       } else if (hasGotLeft) {
-        setDirectionY("right");
+        setDirectionX("right");
       }
       if (hasGotTop) {
-        setDirectionX("bottom");
+        setDirectionY("bottom");
       }
       if (hasGotBottom) {
-        setDirectionX("top");
+        setDirectionY("top");
       }
-      console.log(directionX, directionY);
-      if (directionX === "bottom" && directionY === "right") {
+      if (directionY === "bottom" && directionX === "right") {
         setboxPosition((prev) => ({
           x: prev.x + 1,
           y: prev.y + 1,
         }));
       }
-      if (directionX === "bottom" && directionY === "left") {
+      if (directionY === "bottom" && directionX === "left") {
         setboxPosition((prev) => ({
           x: prev.x - 1,
           y: prev.y + 1,
         }));
       }
-      if (directionX === "top" && directionY === "right") {
+      if (directionY === "top" && directionX === "right") {
         setboxPosition((prev) => ({
           x: prev.x + 1,
           y: prev.y - 1,
         }));
       }
-      if (directionX === "top" && directionY === "left") {
+      if (directionY === "top" && directionX === "left") {
         setboxPosition((prev) => ({
           x: prev.x - 1,
           y: prev.y - 1,
