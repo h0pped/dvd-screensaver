@@ -1,0 +1,15 @@
+.field {
+  border: 1px solid #ccc;
+  width: 700px;
+  height: 393px;
+  position: relative;
+}
+.box {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  top: 0;
+  left: 0;
+  translate: (-50%, -50%);
+  background-color: red;
+}
