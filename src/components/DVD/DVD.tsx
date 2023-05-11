@@ -4,7 +4,7 @@ import "./styles.css";
 type DirectionX = "left" | "right";
 type DirectionY = "top" | "bottom";
 
-const DVD: React.FC = () => {
+const Dvd: React.FC = () => {
   const fieldRef = useRef<HTMLDivElement>(null);
   const boxRef = useRef<HTMLDivElement>(null);
 
@@ -12,7 +12,7 @@ const DVD: React.FC = () => {
   const [boxPosition, setboxPosition] = useState({ x: 0, y: 0 });
 
   const [directionY, setDirectionY] = useState<DirectionY>("bottom");
-  const [directionX, setDirectionX] = useState<DirectionX>("left");
+  const [directionX, setDirectionX] = useState<DirectionX>("right");
 
   useEffect(() => {
     setFieldSize({
@@ -32,6 +32,7 @@ const DVD: React.FC = () => {
 
       const hasGotTop = boxPosition.y - 1 === 0;
       const hasGotBottom = boxPosition.y + 20 + 2 === fieldSize.height;
+
       if (hasGotRight) {
         setDirectionX("left");
       } else if (hasGotLeft) {
@@ -89,4 +90,4 @@ const DVD: React.FC = () => {
   );
 };
 
-export default DVD;
+export default Dvd;
